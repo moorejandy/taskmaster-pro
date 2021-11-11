@@ -46,18 +46,27 @@ var saveTasks = function() {
 };
 
 $(".list-group").on("click", "p", function() {
-  var text = $(this).text().trim();
-  console.log(text);
+  var text = $(this)
+  .text()
+  .trim();
+  // console.log(text);
 
-  var textInput = $("<textarea>").addClass("form-control")
+  var textInput = $("<textarea>")
+    .addClass("form-control")
     .val(text);
 
     $(this).replaceWith(textInput);
     textInput.trigger("focus");
 });
 
+// $(".list-group").on("click", "p", function() {
+//   console.log("<p> was clicked");
+// });
+
 $(".list-group").on("blur", "textarea", function() {
-  var text = $(this).val().trim();
+  var text = $(this)
+    .val()
+    .trim();
 
   var status = $(this)
     .closest(".list-group")
@@ -70,6 +79,12 @@ $(".list-group").on("blur", "textarea", function() {
 
   tasks[status][index].text = text;
   saveTasks();
+
+  var taskP = $("<p>")
+    .addClass("m-1")
+    .text(text);
+
+    $(this).replaceWith(taskP);
 });
 
 
